@@ -1,5 +1,7 @@
 # BUR
 
+![Peek 2022-06-23 02-37](https://user-images.githubusercontent.com/43263401/175180820-1c210e4a-554f-4539-92ef-959e3ca0f46f.gif)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
@@ -16,3 +18,6 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+
+
