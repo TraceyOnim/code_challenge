@@ -13,7 +13,8 @@ defmodule BUR.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: BUR.PubSub},
       # Start the Endpoint (http/https)
-      BURWeb.Endpoint
+      BURWeb.Endpoint,
+      BUR.ResponseServer
       # Start a worker by calling: BUR.Worker.start_link(arg)
       # {BUR.Worker, arg}
     ]

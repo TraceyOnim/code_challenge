@@ -7,6 +7,6 @@ defmodule BURWeb.Router do
 
   scope "/api", BURWeb do
     pipe_through :api
-    resources "/reaction", ReactionController, only: [:create]
+    resources "/reaction", ReactionController, only: [:create, :show]
   end
 end

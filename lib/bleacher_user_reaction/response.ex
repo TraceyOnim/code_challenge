@@ -18,7 +18,7 @@ defmodule BUR.Response do
   """
   @spec response_table() :: atom()
   def response_table do
-    :ets.new(:response, [:bag, :named_table])
+    :ets.new(:response, [:bag, :named_table, read_concurrency: true])
   end
 
   @doc """
@@ -44,13 +44,18 @@ defmodule BUR.Response do
   """
   @spec content_reaction_count(atom(), String.t()) :: map()
   def content_reaction_count(table, content_id) do
-    reaction_count =
-      table
-      |> get_response(content_id)
-      |> Enum.map(fn {_content_id, response} -> response end)
-      |> Enum.group_by(fn response -> response.user_id end)
-      |> Enum.count(fn {_user_id, responses} -> Enum.count(responses) == 1 end)
+    responses = get_response(table, content_id)
 
-    %{content_id: content_id, reaction_count: reaction_count}
+    if Enum.empty?(responses) do
+      {:error, :not_found}
+    else
+      reaction_count =
+        responses
+        |> Enum.map(fn {_content_id, response} -> response end)
+        |> Enum.group_by(fn response -> response.user_id end)
+        |> Enum.count(fn {_user_id, responses} -> Enum.count(responses) == 1 end)
+
+      {:ok, %{content_id: content_id, reaction_count: %{fire: reaction_count}}}
+    end
   end
 end

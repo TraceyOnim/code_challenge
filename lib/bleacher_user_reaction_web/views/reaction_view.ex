@@ -1,7 +1,7 @@
 defmodule BURWeb.ReactionView do
   use BURWeb, :view
 
-  def render("show.json", %{params: params}) do
-    %{params: params}
+  def render("show.json", %{result: result}) do
+    result
   end
 end
