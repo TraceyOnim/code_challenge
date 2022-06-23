@@ -14,14 +14,6 @@ defmodule BUR.Response do
         }
 
   @doc """
-  creates a response table that will contain the records of user reactions to a content
-  """
-  @spec response_table() :: atom()
-  def response_table do
-    :ets.new(:response, [:bag, :named_table, read_concurrency: true])
-  end
-
-  @doc """
   inserts users reactions of the content
   """
   @spec create_response(atom(), map(), Response.t()) :: boolean()

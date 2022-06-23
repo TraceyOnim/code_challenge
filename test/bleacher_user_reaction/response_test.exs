@@ -13,7 +13,8 @@ defmodule BUR.ResponseTest do
       "action" => "add"
     }
 
-    BUR.ResponseServer.create_response(params)
+    Response.create_response(@table, params)
+
     assert [{"123", %Response{}}] = Response.get_response(@table, "123")
   end
 
@@ -43,7 +44,7 @@ defmodule BUR.ResponseTest do
     }
 
     for param <- [param_1, param_2, param_3] do
-      BUR.ResponseServer.create_response(param)
+      Response.create_response(@table, param)
     end
 
     assert {:ok, %{content_id: "1234", reaction_count: %{fire: 1}}} =
